@@ -3,36 +3,38 @@
 <head>
   <meta charset="UTF-8">
   <meta content="IE=Edge" http-equiv="X-UA-Compatible">
-  <meta name="description" content="My AKTIV">
+  <meta name="description" content="MAIN PAGE">
 
   <!-- iOS meta tags & icons -->
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
-  <meta name="apple-mobile-web-app-title" content="webapp">
+  <meta name="apple-mobile-web-app-title" content="gitmain">
   <link rel="apple-touch-icon" href="icons/Icon-192.png">
 
   <!-- Favicon -->
   <link rel="shortcut icon" type="image/png" href="favicon.png"/>
 
-  <title>AKTIV</title>
+  <title>Главная страница</title>
   <link rel="manifest" href="manifest.json">
 </head>
 <body>
-  <!-- Добавляем оповещения -->
-  <script src="https://cdn.onesignal.com/sdks/OneSignalSDK.js" async=""></script>
-  <script>
-    var OneSignal = window.OneSignal || [];
-    OneSignal.push(function() {
-      OneSignal.init({
-        appId: "929b8658-452e-4625-b88a-bf7c594da2c4",
-        notifyButton: {
-          enable: true,
-        },
+    <!-- Добавляем оповещения -->
+    <script src="https://cdn.onesignal.com/sdks/OneSignalSDK.js" async=""></script>
+    <script>
+      var OneSignal = window.OneSignal || [];
+      OneSignal.push(function() {
+        OneSignal.init({
+          appId: "929b8658-452e-4625-b88a-bf7c594da2c4",
+          notifyButton: {
+            enable: true,
+          },
+        });
       });
-    });
-  </script>
+    </script>
   
-  <!-- Функциональность PWA -->
+  <!-- This script installs service_worker.js to provide PWA functionality to
+       application. For more information, see:
+       https://developers.google.com/web/fundamentals/primers/service-workers -->
   <script>
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', function () {
