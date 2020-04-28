@@ -37,7 +37,7 @@ resetUI();
 
 if (
     'Notification' in window &&
-    'serviceWorker' in navigator &&
+    '' in navigator &&
     'localStorage' in window &&
     'fetch' in window &&
     'postMessage' in window
