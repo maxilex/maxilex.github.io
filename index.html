@@ -76,7 +76,7 @@
   // Кнопка открыть сканирование qr
   let btnQR = document.getElementById("btnQR");
   btn.addEventListener('click', function () {
-    Telegram.WebApp.showScanQrPopup();
+    tg.showScanQrPopup();
   });
 
   Telegram.WebApp.onEvent('mainButtonClicked', function () {
