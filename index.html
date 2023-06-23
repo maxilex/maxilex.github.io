@@ -30,7 +30,7 @@
       display: block;
       width: 100%;
       font-size: 14px;
-      margin: 15px 0;
+      margin: 5px 0;
       padding: 12px 20px;
       border: none;
       border-radius: 4px;
@@ -76,7 +76,7 @@
   // Кнопка отправить сообщение
   let btnSend = document.getElementById("btnSend");
   btnSend.addEventListener('click', function () {
-    tg.sendData("проверка");
+    //tg.sendData("проверка");
   });
 
   // Кнопка открыть сканирование qr
@@ -84,17 +84,6 @@
   btnQR.addEventListener('click', function () {
     tg.showScanQrPopup();
   });
-
-  Telegram.WebApp.onEvent('mainButtonClicked', function () {
-    tg.close();
-  });
-
-  function webviewExpand() {
-    tg.WebApp.expand();
-  }
-  function webviewClose() {
-    tg.close();
-  }
 
   // карточка пользователя
   let usercard = document.getElementById("usercard"); //получаем блок usercard 
@@ -110,7 +99,11 @@
   userid.innerText = `${tg.initDataUnsafe.user.id}`; //показываем user_id
   usercard.appendChild(userid); //добавляем
 
-  Telegram.WebApp.MainButton.setText('Закрыть');
+  //Главная кнопка
+  Telegram.WebApp.onEvent('mainButtonClicked', function () {
+    tg.close();
+  });
+  Telegram.WebApp.MainButton.setText('Закрыть').show();
 </script>
 
 </html>
