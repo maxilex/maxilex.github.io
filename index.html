@@ -68,9 +68,15 @@
   });
 
   // Кнопка отправить сообщение
-  let btnSend = document.getElementById("btnSend"); 
-  btn.addEventListener('click', function () { 
-    tg.sendData("проверка");
+  let btnSend = document.getElementById("btnSend");
+  btn.addEventListener('click', function () {
+    Telegram.WebApp.sendData("проверка");
+  });
+
+  // Кнопка открыть сканирование qr
+  let btnQR = document.getElementById("btnQR");
+  btn.addEventListener('click', function () {
+    Telegram.WebApp.sendData("проверка");
   });
 
   Telegram.WebApp.onEvent('mainButtonClicked', function () {
@@ -82,7 +88,7 @@
     tg.WebApp.expand();
   }
   function webviewClose() {
-    tg.WebApp.close();
+    tg.close();
   }
 
   // карточка пользователя
@@ -98,6 +104,11 @@
   let userid = document.createElement('p'); //создаем еще параграф 
   userid.innerText = `${tg.initDataUnsafe.user.id}`; //показываем user_id
   usercard.appendChild(userid); //добавляем
+
+  Telegram.WebApp.MainButton
+    .setText('Закрыть')
+    .show()
+    .onClick(function () { webviewClose(); });
 </script>
 
 </html>
