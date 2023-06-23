@@ -75,19 +75,18 @@
 
   // Кнопка отправить сообщение
   let btnSend = document.getElementById("btnSend");
-  btn.addEventListener('click', function () {
-    Telegram.WebApp.sendData("проверка");
+  btnSend.addEventListener('click', function () {
+    tg.sendData("проверка");
   });
 
   // Кнопка открыть сканирование qr
   let btnQR = document.getElementById("btnQR");
-  btn.addEventListener('click', function () {
+  btnQR.addEventListener('click', function () {
     tg.showScanQrPopup();
   });
 
   Telegram.WebApp.onEvent('mainButtonClicked', function () {
-    tg.sendData("some string that we need to send");
-    //при клике на основную кнопку отправляем данные в строковом виде
+    tg.close();
   });
 
   function webviewExpand() {
@@ -111,10 +110,7 @@
   userid.innerText = `${tg.initDataUnsafe.user.id}`; //показываем user_id
   usercard.appendChild(userid); //добавляем
 
-  Telegram.WebApp.MainButton
-    .setText('Закрыть')
-    .show()
-    .onClick(function () { webviewClose(); });
+  Telegram.WebApp.MainButton.setText('Закрыть');
 </script>
 
 </html>
