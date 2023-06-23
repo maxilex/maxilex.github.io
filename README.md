@@ -1,3 +1,3 @@
 # maxilex.github.io
-PWA
+TELEGRAM WEB APP
 https://maxilex.github.io/
