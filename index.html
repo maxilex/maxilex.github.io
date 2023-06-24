@@ -55,6 +55,7 @@
   <button id="btn" class="button">Показать скрыть меню</button> <!--Кнопка, чтобы скрыть / показать основную кнопку-->
   <button id="btnSend" class="button">Отправить текст</button>
   <button id="btnQR" class="button">Сканировать QR</button>
+  <button id="main_btn" onclick="scanQR();">QR</button>
 </body>
 
 <script>
@@ -96,10 +97,46 @@
     //tg.sendData("проверка");
   });
 
+  function scanQR() {
+    Telegram.WebApp.showScanQrPopup({
+      text: links_only ? 'with any link' : 'for test purposes'
+    }, function (text) {
+      if (links_only) {
+        var lower_text = text.toString().toLowerCase();
+        if (lower_text.substr(0, 7) == 'http://' ||
+          lower_text.substr(0, 8) == 'https://') {
+          setTimeout(function () {
+            Telegram.WebApp.openLink(text);
+          }, 50);
+          return true;
+        }
+      } else {
+        DemoApp.showAlert(text);
+        return true;
+      }
+    });
+  }
+
   // Кнопка открыть сканирование qr
   let btnQR = document.getElementById("btnQR");
   btnQR.addEventListener('click', function () {
-    tg.showScanQrPopup();
+    Telegram.WebApp.showScanQrPopup({
+      text: links_only ? 'with any link' : 'for test purposes'
+    }, function (text) {
+      if (links_only) {
+        var lower_text = text.toString().toLowerCase();
+        if (lower_text.substr(0, 7) == 'http://' ||
+          lower_text.substr(0, 8) == 'https://') {
+          setTimeout(function () {
+            Telegram.WebApp.openLink(text);
+          }, 50);
+          return true;
+        }
+      } else {
+        DemoApp.showAlert(text);
+        return true;
+      }
+    });
   });
 
   // карточка пользователя
