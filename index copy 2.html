@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Telegram WebApps API</title>
+  <script src="https://telegram.org/js/telegram-web-app.js"></script> <!--Подключаем скрипт от телеграм-->
+  <script>
+    function setThemeClass() {
+      document.documentElement.className = Telegram.WebApp.colorScheme;
+    }
+    Telegram.WebApp.onEvent('themeChanged', setThemeClass);
+    setThemeClass();
+
+  </script>
+  <link href="demo.css" rel="stylesheet">
+</head>
+
+<body>
+  <div id="usercard"> <!--Карта профиля, человека, который к нам обратился-->
+  </div>
+  <button id="btn" class="button">Показать скрыть меню</button> <!--Кнопка, чтобы скрыть / показать основную кнопку-->
+  <button id="btnSend" class="button" onclick="sendText('dfgtest');">Отправить текст</button>
+  <button id="btnQR" class="button">Сканировать QR</button>
+  <button id="qr_btn" onclick="DemoApp.showScanQrPopup();">открыть сканирование</button>
+  <button id="main_btn" onclick="DemoApp.sendMessage('');">Send «Hello, World!»</button>
+  <script src="demo.js"></script>
+  <script>
+    DemoApp.checkInitData();
+    DemoApp.init();
+
+    let tg = window.Telegram.WebApp; //получаем объект webapp телеграма 
+
+    //tg.expand(); //расширяем на все окно
+
+    //Главная кнопка
+    let btnMain = tg.MainButton;
+    btnMain.setText("Закрыть");
+    btnMain.show();
+    btnMain.onClick(function () {
+      tg.close();
+    });
+
+    //Кнопка Назад
+    let btnBack = tg.BackButton;
+    btnBack.show();
+    btnBack.onClick(function () {
+      tg.showAlert("Нет пути назад!");
+
+      btnBack.hide();
+    });
+
+    // Кнопка показать меню
+    let btn = document.getElementById("btn"); //получаем кнопку скрыть/показать 
+    btn.addEventListener('click', function () { //вешаем событие на нажатие html-кнопки
+      if (btnMain.isVisible) { //если кнопка показана 
+        btnMain.hide() //скрываем кнопку 
+      }
+      else { //иначе
+        btnMain.show() //показываем 
+      }
+    });
+
+    // Кнопка отправить сообщение
+    let btnSend = document.getElementById("btnSend");
+    btnSend.addEventListener('click', function () {
+      //tg.sendData("проверка");
+    });
+
+    function scanQR() {
+      Telegram.WebApp.showScanQrPopup({
+        text: links_only ? 'with any link' : 'for test purposes'
+      }, function (text) {
+        if (links_only) {
+          var lower_text = text.toString().toLowerCase();
+          if (lower_text.substr(0, 7) == 'http://' ||
+            lower_text.substr(0, 8) == 'https://') {
+            setTimeout(function () {
+              Telegram.WebApp.openLink(text);
+            }, 50);
+            return true;
+          }
+        } else {
+          DemoApp.showAlert(text);
+          return true;
+        }
+      });
+    }
+
+    function sendText(text) {
+      Telegram.WebApp.sendData(text);
+    }
+
+    // Кнопка открыть сканирование qr
+    let btnQR = document.getElementById("btnQR");
+    btnQR.addEventListener('click', function () {
+      Telegram.WebApp.showScanQrPopup({
+        text: links_only ? 'with any link' : 'for test purposes'
+      }, function (text) {
+        if (links_only) {
+          var lower_text = text.toString().toLowerCase();
+          if (lower_text.substr(0, 7) == 'http://' ||
+            lower_text.substr(0, 8) == 'https://') {
+            setTimeout(function () {
+              Telegram.WebApp.openLink(text);
+            }, 50);
+            return true;
+          }
+        } else {
+          DemoApp.showAlert(text);
+          return true;
+        }
+      });
+    });
+
+    // карточка пользователя
+    let usercard = document.getElementById("usercard"); //получаем блок usercard 
+
+    let profName = document.createElement('p'); //создаем параграф
+    profName.innerText = `${tg.initDataUnsafe.user.first_name}
+  ${tg.initDataUnsafe.user.last_name}
+  ${tg.initDataUnsafe.user.username} (${tg.initDataUnsafe.user.language_code})`;
+    //выдем имя, "фамилию", через тире username и код языка
+    usercard.appendChild(profName); //добавляем 
+
+    let userid = document.createElement('p'); //создаем еще параграф 
+    userid.innerText = `${tg.initDataUnsafe.user.id}`; //показываем user_id
+    usercard.appendChild(userid); //добавляем
+
+  </script>
+</body>
+
+</html>
