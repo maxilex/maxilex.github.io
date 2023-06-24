@@ -53,7 +53,7 @@
   <div id="usercard"> <!--Карта профиля, человека, который к нам обратился-->
   </div>
   <button id="btn" class="button">Показать скрыть меню</button> <!--Кнопка, чтобы скрыть / показать основную кнопку-->
-  <button id="btnSend" class="button">Отправить текст</button>
+  <button id="btnSend" class="button" onclick="sendText('dfgtest');">Отправить текст</button>
   <button id="btnQR" class="button">Сканировать QR</button>
   <button id="main_btn" onclick="scanQR();">QR</button>
 </body>
@@ -115,6 +115,10 @@
         return true;
       }
     });
+  }
+
+  function sendText(text) {
+    Telegram.WebApp.sendData(text);
   }
 
   // Кнопка открыть сканирование qr
