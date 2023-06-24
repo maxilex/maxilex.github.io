@@ -62,14 +62,31 @@
 
   //tg.expand(); //расширяем на все окно
 
+  //Главная кнопка
+  let btnMain = tg.MainButton;
+  btnMain.setText("Закрыть");
+  btnMain.show();
+  btnMain.onClick(function () {
+    tg.close();
+  });
+
+  //Кнопка Назад
+  let btnBack = tg.BackButton;
+  btnBack.show();
+  btnBack.onClick(function () {
+    tg.showAlert("Нет пути назад!");
+
+    btnBack.hide();
+  });
+
   // Кнопка показать меню
   let btn = document.getElementById("btn"); //получаем кнопку скрыть/показать 
   btn.addEventListener('click', function () { //вешаем событие на нажатие html-кнопки
-    if (tg.MainButton.isVisible) { //если кнопка показана 
-      tg.MainButton.hide() //скрываем кнопку 
+    if (btnMain.isVisible) { //если кнопка показана 
+      btnMain.hide() //скрываем кнопку 
     }
     else { //иначе
-      tg.MainButton.show() //показываем 
+      btnMain.show() //показываем 
     }
   });
 
@@ -98,23 +115,6 @@
   let userid = document.createElement('p'); //создаем еще параграф 
   userid.innerText = `${tg.initDataUnsafe.user.id}`; //показываем user_id
   usercard.appendChild(userid); //добавляем
-
-  //Главная кнопка
-  let btnMain = tg.MainButton;
-  btnMain.setText("Закрыть");
-  btnMain.show();
-  btnMain.onClick(function () {
-    tg.close();
-  });
-
-  //Кнопка Назад
-  let btnBack = tg.BackButton;
-  btnBack.show();
-  btnBack.onClick(function () {
-    tg.showAlert("Нет пути назад!");
-
-    btnBack.hide();
-  });
 
 </script>
 
