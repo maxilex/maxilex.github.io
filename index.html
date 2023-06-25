@@ -26,23 +26,6 @@
   <button id="showpop_btn" onclick="tgweb.showPopup();">Вывести сообщение</button>
   <button id="qr_btn" onclick="showScanQr();">Сканировать QR</button>
   <script src="tgweb.js" defer></script>
-  <script>
-    Telegram.WebApp.MainButton.setText('Закрыть');
-    Telegram.WebApp.MainButton.show();
-    function showScanQr() {
-      Telegram.WebApp.showScanQrPopup({
-        text: 'Сканируем qr код'
-      }, function (text) {
-        tgweb.showAlert(text);
-        return true;
-      });
-    };
-    //window.onload = function () {
-    //tgweb.checkInitData();
-    //tgweb.init();
-      //tgweb.expand(); //расширяем на все окно
-      //}
-  </script>
 </body>
 
 </html>

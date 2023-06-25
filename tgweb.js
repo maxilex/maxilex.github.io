@@ -133,3 +133,8 @@ var tgweb = {
 
 
 };
+
+tgweb.checkInitData();
+tgweb.init();
+tgweb.expand(); //расширяем на все окно
+
