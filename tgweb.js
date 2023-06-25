@@ -1,4 +1,6 @@
 var tgweb = {
+    initData: Telegram.WebApp.initData || '',
+    initDataUnsafe: Telegram.WebApp.initDataUnsafe || {},
     MainButton: Telegram.WebApp.MainButton,
     BackButton: Telegram.WebApp.BackButton,
 
@@ -9,6 +11,20 @@ var tgweb = {
             text: 'Закрыть',
             is_visible: true
         }).onClick(tgweb.close);
+    },
+    checkInitData: function () {
+        if (tgweb.initDataUnsafe.query_id &&
+            tgweb.initData &&
+            $('#webview_data_status').hasClass('status_need')) {
+            $('#webview_data_status').removeClass('status_need');
+            tgweb.apiRequest('checkInitData', {}, function (result) {
+                if (result.ok) {
+                    $('#webview_data_status').html('Hash is correct (async)').addClass('ok');
+                } else {
+                    $('#webview_data_status').html(result.error + ' (async)').addClass('err');
+                }
+            });
+        }
     },
     expand: function () {
         Telegram.WebApp.expand();

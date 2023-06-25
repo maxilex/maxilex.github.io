@@ -19,12 +19,13 @@
 </head>
 
 <body>
-  <button id="btnSend" class="button" onclick="sendText('dfgtest');">Отправить текст</button>
   <button id="btnQR" class="button">Сканировать QR</button>
   <button id="qr_btn" onclick="tgweb.showScanQrPopup();">открыть сканирование</button>
   <button id="main_btn" onclick="tgweb.sendMessage('');">Send «Hello, World!»</button>
+  <button id="btn" onclick="tgweb.expand();">Расширить окно</button>
   <script src="tgweb.js"></script>
   <script>
+    tgweb.checkInitData();
     tgweb.init();
     tgweb.expand(); //расширяем на все окно
     tgweb.showPopup();
