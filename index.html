@@ -24,16 +24,16 @@
   <button id="main_btn" onclick="tgweb.sendMessage('');">Send «Hello, World!»</button>
   <button id="qr_btn" onclick="tgweb.showScanQr();">Сканировать QR</button>
   <button id="showpop_btn" onclick="tgweb.showPopup();">Вывести сообщение</button>
-  <script src="tgweb.js"></script>
+  <script src="tgweb.js" defer></script>
 </body>
 <script>
   Telegram.WebApp.MainButton.show();
-  window.onload = function () {
-    tgweb.checkInitData();
-    tgweb.init();
-    tgweb.showPopup();
+  //window.onload = function () {
+  tgweb.checkInitData();
+  tgweb.init();
+  tgweb.showPopup();
     //tgweb.expand(); //расширяем на все окно
-  }
+  //}
 </script>
 
 </html>
