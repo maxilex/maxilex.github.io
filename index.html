@@ -26,9 +26,11 @@
   <button id="showpop_btn" onclick="tgweb.showPopup();">Вывести сообщение</button>
   <script src="tgweb.js"></script>
   <script>
-    tgweb.checkInitData();
-    tgweb.init();
-    tgweb.expand(); //расширяем на все окно
+    document.onload = function(){
+      tgweb.checkInitData();
+      tgweb.init();
+      tgweb.expand(); //расширяем на все окно
+    }
   </script>
 </body>
 
