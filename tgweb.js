@@ -133,5 +133,3 @@ var tgweb = {
 
 
 };
-
-tgweb.showPopup();

@@ -19,20 +19,30 @@
 </head>
 
 <body>
-  <button id="btn" onclick="tgweb.expand();">Расширить окно2</button>
+  <button id="btn" onclick="tgweb.expand();">Расширить окно3</button>
   <button id="qrdemo_btn" onclick="tgweb.showScanQrPopup();">Сканирование демо</button>
   <button id="main_btn" onclick="tgweb.sendMessage('');">Send «Hello, World!»</button>
-  <button id="qr_btn" onclick="tgweb.showScanQr();">Сканировать QR</button>
+  <button id="qr1_btn" onclick="tgweb.showScanQr();">Сканировать QR</button>
   <button id="showpop_btn" onclick="tgweb.showPopup();">Вывести сообщение</button>
+  <button id="qr_btn" onclick="showScanQr();">Сканировать QR</button>
   <script src="tgweb.js" defer></script>
+  <script>
+    Telegram.WebApp.MainButton.setText('Закрыть');
+    Telegram.WebApp.MainButton.show();
+    function showScanQr() {
+      Telegram.WebApp.showScanQrPopup({
+        text: 'Сканируем qr код'
+      }, function (text) {
+        tgweb.showAlert(text);
+        return true;
+      });
+    };
+    //window.onload = function () {
+    //tgweb.checkInitData();
+    //tgweb.init();
+      //tgweb.expand(); //расширяем на все окно
+      //}
+  </script>
 </body>
-<script>
-  Telegram.WebApp.MainButton.show();
-  //window.onload = function () {
-  tgweb.checkInitData();
-  tgweb.init();
-    //tgweb.expand(); //расширяем на все окно
-  //}
-</script>
 
 </html>
