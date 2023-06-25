@@ -122,6 +122,14 @@ var tgweb = {
             }
         });
     },
+    showScanQr: function () {
+        Telegram.WebApp.showScanQrPopup({
+            text: 'Сканируем qr код'
+        }, function (text) {
+            tgweb.showAlert(text);
+            return true;
+        });
+    }
 
 
 };

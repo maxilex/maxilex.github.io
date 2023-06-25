@@ -19,10 +19,10 @@
 </head>
 
 <body>
-  <button id="btnQR" class="button">Сканировать QR</button>
-  <button id="qr_btn" onclick="tgweb.showScanQrPopup();">открыть сканирование</button>
-  <button id="main_btn" onclick="tgweb.sendMessage('');">Send «Hello, World!»</button>
   <button id="btn" onclick="tgweb.expand();">Расширить окно</button>
+  <button id="qr1_btn" onclick="tgweb.showScanQrPopup();">открыть сканирование</button>
+  <button id="main_btn" onclick="tgweb.sendMessage('');">Send «Hello, World!»</button>
+  <button id="qr_btn" onclick="tgweb.showScanQr();">Сканировать QR</button>
   <script src="tgweb.js"></script>
   <script>
     tgweb.checkInitData();
