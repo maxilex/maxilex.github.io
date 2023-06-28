@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Telegram WebApps API</title>
+  <title>Telegram WebApps</title>
   <script src="https://telegram.org/js/telegram-web-app.js"></script> <!--Подключаем скрипт от телеграм-->
   <script>
     function setThemeClass() {
@@ -15,35 +15,16 @@
     setThemeClass();
 
   </script>
-  <link href="demo.css" rel="stylesheet">
+  <script src="app.js" defer></script>
+  <link href="app.css" rel="stylesheet">
 </head>
 
 <body>
-  <button id="btn" onclick="tgweb.expand();">Расширить окно</button>
-  <button id="qrdemo_btn" onclick="tgweb.showScanQrPopup();">Сканирование демо</button>
-  <button id="main_btn" onclick="tg.showAlert('тест');">Тестовое сообщение</button>
-  <button id="qr_btn" onclick="showScanQr();">Сканировать QR</button>
-  <button id="showpop_btn" onclick="tgweb.showPopup();">Вывести сообщение</button>
-  <script src="tgweb.js" defer></script>
-  <script>
-    Telegram.WebApp.ready();
-    var tg = window.Telegram.WebApp;
-    tg.MainButton.setParams({
-      text: 'Закрыть',
-      is_visible: true
-    }).onClick(Telegram.WebApp.close);
-
-    //окно сканирования
-    function showScanQr() {
-      tg.showScanQrPopup({
-        text: 'Сканируем qr код'
-      }, function (text) {
-        tg.showAlert(text);
-        return true;
-      });
-    };
-  </script>
-
+  <button id="btnExpand" onclick="tg.expand()">Расширить окно</button>
+  <button id="btnDemo" onclick="tg.showScanQrPopup();">Сканирование демо</button>
+  <button id="btnMain" onclick="tg.showAlert('тест')">Тестовое сообщение</button>
+  <button id="btnQR" onclick="app.showScanQr();">Сканировать QR</button>
+  <button id="btnShowPop" onclick="tgweb.showPopup();">Вывести сообщение</button>
 </body>
 
 </html>
