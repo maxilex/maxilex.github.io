@@ -10,24 +10,44 @@ tg.MainButton.setParams({
 //Элементы HTML
 const el = {
     btnMain: document.getElementById("btnMain"),
-    btnQR: document.getElementById("btnQR"),
+    btnQrAlert: document.getElementById("btnQrAlert"),
+    btnQr: document.getElementById("btnQR"),
     btnShowPop: document.getElementById("btnShowPop")
 }
 
 //Тестовое сообщение
-el.btnMain.addEventListener('click', function () {
-    tg.showAlert('проверка')
+el.btnMain.onclick = tg.showAlert('проверка')
+
+//окно сканирования вывод сообщения
+el.btnQrAlert.onclick = tg.showScanQrPopup({
+    text: 'Сканируем qr код'
+}, function (text) {
+    tg.showAlert(text)
+    return true
 })
 
 //окно сканирования
-el.btnQR.addEventListener('click', function () {
+el.btnQr.onclick = function () {
     tg.showScanQrPopup({
         text: 'Сканируем qr код'
     }, function (text) {
-        tg.showAlert(text)
+        tg.showPopup({
+            title: 'QR',
+            message: text,
+            buttons: [
+                { id: 'open', type: 'default', text: 'Открыть' },
+                { type: 'cancel' },
+            ]
+        }, function (button_id) {
+            if (button_id === 'open') {
+                tg.openLink(text)
+            } else {
+                tg.showAlert(text)
+            }
+        })
         return true
     })
-})
+}
 
 // Окно опрос с обаботкой результата
 el.btnShowPop.addEventListener('click', function () {
