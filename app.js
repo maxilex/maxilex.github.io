@@ -9,14 +9,14 @@ tg.MainButton.setParams({
 
 //Элементы HTML
 const el = {
-    btnMain: document.getElementById("btnMain"),
     btnQrAlert: document.getElementById("btnQrAlert"),
     btnQr: document.getElementById("btnQR"),
     btnShowPop: document.getElementById("btnShowPop")
 }
 
 //Тестовое сообщение
-el.btnMain.onclick = tg.showAlert('проверка')
+btnMain = document.getElementById("btnMain")
+btnMain.onclick = tg.showAlert('проверка')
 
 //окно сканирования вывод сообщения
 el.btnQrAlert.onclick = tg.showScanQrPopup({
