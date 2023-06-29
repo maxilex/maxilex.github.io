@@ -11,7 +11,7 @@ tg.MainButton.setParams({
 const el = {
     btnMain: document.getElementById("btnMain"),
     btnQrAlert: document.getElementById("btnQrAlert"),
-    btnQr: document.getElementById("btnQR"),
+    btnQr: document.getElementById("btnQr"),
     btnShowPop: document.getElementById("btnShowPop")
 }
 
@@ -27,6 +27,25 @@ el.btnQrAlert.onclick = function () {
     }, function (text) {
         tg.showAlert(text)
         return true
+    })
+}
+
+// Окно опрос с обаботкой результата
+el.btnShowPop.onclick = function () {
+    tg.showPopup({
+        title: 'Заголовок',
+        message: 'Текст сообщения',
+        buttons: [
+            { id: 'delete', type: 'destructive', text: 'Delete all' },
+            { id: 'faq', type: 'default', text: 'Open FAQ' },
+            { type: 'cancel' },
+        ]
+    }, function (button_id) {
+        if (button_id == 'delete') {
+            tg.showAlert("'Delete all' selected")
+        } else if (button_id == 'faq') {
+            tg.openLink('https://telegram.org/faq')
+        }
     })
 }
 
@@ -52,22 +71,3 @@ el.btnQr.onclick = function () {
         return true
     })
 }
-
-// Окно опрос с обаботкой результата
-el.btnShowPop.addEventListener('click', function () {
-    tg.showPopup({
-        title: 'Заголовок',
-        message: 'Текст сообщения',
-        buttons: [
-            { id: 'delete', type: 'destructive', text: 'Delete all' },
-            { id: 'faq', type: 'default', text: 'Open FAQ' },
-            { type: 'cancel' },
-        ]
-    }, function (button_id) {
-        if (button_id == 'delete') {
-            tg.showAlert("'Delete all' selected")
-        } else if (button_id == 'faq') {
-            tg.openLink('https://telegram.org/faq')
-        }
-    })
-})
