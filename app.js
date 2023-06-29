@@ -9,22 +9,25 @@ tg.MainButton.setParams({
 
 //Элементы HTML
 const el = {
-    btnMain: document.getElementById("btnMain")
+    btnMain: document.getElementById("btnMain"),
+    btnQR: document.getElementById("btnQR"),
+    btnShowPop: document.getElementById("btnShowPop")
 }
 
+//Тестовое сообщение
 el.btnMain.addEventListener('click', function () {
     tg.showAlert('проверка')
 })
 
 //окно сканирования
-function showScanQr() {
+el.btnQR.addEventListener('click', function () {
     tg.showScanQrPopup({
         text: 'Сканируем qr код'
     }, function (text) {
         tg.showAlert(text)
         return true
     })
-}
+})
 
 // Окно опрос с обаботкой результата
 function showPopup() {
