@@ -1,10 +1,20 @@
 Telegram.WebApp.ready()
 let tg = window.Telegram.WebApp
 
+//старт
 tg.MainButton.setParams({
     text: 'Закрыть',
     is_visible: true
 }).onClick(Telegram.WebApp.close)
+
+//Элементы HTML
+const el = {
+    btnMain: document.getElementById("btnMain")
+}
+
+el.btnMain.addEventListener('click', function () {
+    tg.showAlert('проверка')
+})
 
 //окно сканирования
 function showScanQr() {
@@ -28,7 +38,7 @@ function showPopup() {
         ]
     }, function (button_id) {
         if (button_id == 'delete') {
-            tgweb.showAlert("'Delete all' selected")
+            tg.showAlert("'Delete all' selected")
         } else if (button_id == 'faq') {
             tg.openLink('https://telegram.org/faq')
         }
