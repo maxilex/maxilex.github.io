@@ -30,7 +30,7 @@ el.btnQR.addEventListener('click', function () {
 })
 
 // Окно опрос с обаботкой результата
-function showPopup() {
+el.btnShowPop.addEventListener('click', function () {
     tg.showPopup({
         title: 'Заголовок',
         message: 'Текст сообщения',
@@ -46,4 +46,4 @@ function showPopup() {
             tg.openLink('https://telegram.org/faq')
         }
     })
-}
+})
