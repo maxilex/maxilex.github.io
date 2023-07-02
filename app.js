@@ -9,10 +9,10 @@ tg.MainButton.setParams({
 
 //Элементы HTML
 const el = {
-    btnMain: document.getElementById("btnMain"),
-    btnQrAlert: document.getElementById("btnQrAlert"),
-    btnQr: document.getElementById("btnQr"),
-    btnShowPop: document.getElementById("btnShowPop")
+    btnMain: document.querySelector("#btnMain"),
+    btnQrAlert: document.querySelector("#btnQrAlert"),
+    btnQr: document.querySelector("#btnQr"),
+    btnShowPop: document.querySelector("#btnShowPop")
 }
 
 //Тестовое сообщение
