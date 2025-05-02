@@ -13,13 +13,23 @@
     }
     Telegram.WebApp.onEvent('themeChanged', setThemeClass);
     setThemeClass();
-
+    function sendData() {
+        const input = document.getElementById("dataInput").value;
+        if (Telegram && Telegram.WebApp && Telegram.WebApp.initDataUnsafe) {
+            Telegram.WebApp.sendData(input);
+        } else {
+            alert("Это не WebApp Telegram");
+        }
+    }
   </script>
   <link href="app.css" rel="stylesheet">
   <script src="app.js" defer></script>
 </head>
 
 <body>
+  <h1>Введите данные</h1>
+  <input type="text" id="dataInput" placeholder="Например: Привет боту!">
+  <button onclick="sendData()">Отправить</button>
   <button id="btnExpand" onclick="tg.expand()">Расширить окно</button>
   <button id="btnQrAlert">Сообщить текст QR</button>
   <button id="btnMain">Текстовое сообщение</button>
